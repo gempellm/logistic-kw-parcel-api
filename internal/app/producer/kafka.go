@@ -1,10 +1,13 @@
 package producer
 
 import (
+	"fmt"
+	"log"
 	"sync"
 	"time"
 
 	"github.com/gammazero/workerpool"
+	"github.com/gempellm/logistic-kw-parcel-api/internal/app/repo"
 	"github.com/gempellm/logistic-kw-parcel-api/internal/app/sender"
 	"github.com/gempellm/logistic-kw-parcel-api/internal/model"
 )
@@ -25,6 +28,8 @@ type producer struct {
 
 	wg   *sync.WaitGroup
 	done chan bool
+
+	repo repo.EventRepo
 }
 
 func NewKafkaProducer(
@@ -32,6 +37,7 @@ func NewKafkaProducer(
 	sender sender.EventSender,
 	events <-chan model.ParcelEvent,
 	workerPool *workerpool.WorkerPool,
+	repo repo.EventRepo,
 ) Producer {
 	wg := &sync.WaitGroup{}
 	done := make(chan bool)
@@ -43,6 +49,7 @@ func NewKafkaProducer(
 		workerPool: workerPool,
 		wg:         wg,
 		done:       done,
+		repo:       repo,
 	}
 }
 
@@ -54,13 +61,22 @@ func (p *producer) Start() {
 			for {
 				select {
 				case event := <-p.events:
-					if err := p.sender.Send(&event); err != nil {
+					err := p.sender.Send(&event)
+					if err != nil {
 						p.workerPool.Submit(func() {
-							//...
+							fmt.Printf("<producer> sender caught error while sending %#+v: %v\n", event, err)
+							err := p.repo.Unlock([]uint64{event.ID})
+							if err != nil {
+								log.Fatal("error occurred during p.repo.Unlock()")
+							}
 						})
 					} else {
 						p.workerPool.Submit(func() {
-							//...
+							fmt.Printf("<producer> sender successfully sent %#+v\n", event)
+							err := p.repo.Remove([]uint64{event.ID})
+							if err != nil {
+								log.Fatal("error occurred during p.repo.Remove()")
+							}
 						})
 					}
 				case <-p.done:

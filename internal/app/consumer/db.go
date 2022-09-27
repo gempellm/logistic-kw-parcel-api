@@ -56,16 +56,33 @@ func NewDbConsumer(
 }
 
 func (c *consumer) Start() {
-	for i := uint64(0); i < c.n; i++ {
+	for j := uint64(0); j < c.n; j++ {
 		c.wg.Add(1)
-
-		go func() {
+		go func(i uint64) {
 			defer c.wg.Done()
 			ticker := time.NewTicker(c.timeout)
+
 			for {
 				select {
 				case <-ticker.C:
 					events, err := c.repo.Lock(c.batchSize)
+					// getEvents := func() ([]model.ParcelEvent, error) {
+					// 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+					// 	events := make([]model.ParcelEvent, 2)
+
+					// 	for i := range events {
+					// 		events[i] = model.ParcelEvent{
+					// 			ID:     uint64(i),
+					// 			Type:   model.Created,
+					// 			Status: model.Deferred,
+					// 			Entity: &model.Parcel{ID: r.Uint64()},
+					// 		}
+					// 	}
+
+					// 	return events, nil
+					// }
+
+					// events, err := getEvents()
 					if err != nil {
 						continue
 					}
@@ -73,11 +90,12 @@ func (c *consumer) Start() {
 					for _, event := range events {
 						c.events <- event
 					}
+
 				case <-c.done:
 					return
 				}
 			}
-		}()
+		}(j)
 	}
 }
 
