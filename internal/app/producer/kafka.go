@@ -64,7 +64,7 @@ func (p *producer) Start() {
 					err := p.sender.Send(&event)
 					if err != nil {
 						p.workerPool.Submit(func() {
-							fmt.Printf("<producer> sender caught error while sending %#+v: %v\n", event, err)
+							fmt.Printf("<producer> sender caught error while sending %+v: %v\n", event, err)
 							err := p.repo.Unlock([]uint64{event.ID})
 							if err != nil {
 								log.Fatal("error occurred during p.repo.Unlock()")
@@ -72,10 +72,26 @@ func (p *producer) Start() {
 						})
 					} else {
 						p.workerPool.Submit(func() {
-							fmt.Printf("<producer> sender successfully sent %#+v\n", event)
+							fmt.Printf("<producer> sender successfully sent %+v\n", event)
 							err := p.repo.Remove([]uint64{event.ID})
 							if err != nil {
 								log.Fatal("error occurred during p.repo.Remove()")
+							}
+
+							switch event.Type {
+							case model.Created:
+								event.Status = model.Processed
+								err := p.repo.Add([]model.ParcelEvent{event})
+								if err != nil {
+									log.Fatal("error occurred during p.repo.Add()")
+								}
+								fmt.Printf("<producer> event.Status = model.Processed && p.repo.Add(): %+v\n", event)
+							case model.Updated:
+								fmt.Println("<producer> event.Type = model.Updated")
+							case model.Removed:
+								fmt.Println("<producer event.Type = model.Removed")
+							default:
+								log.Fatal("<producer> unknown event.Type")
 							}
 						})
 					}
