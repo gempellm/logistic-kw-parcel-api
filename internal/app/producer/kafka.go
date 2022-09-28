@@ -1,6 +1,7 @@
 package producer
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"sync"
@@ -26,8 +27,8 @@ type producer struct {
 
 	workerPool *workerpool.WorkerPool
 
-	wg   *sync.WaitGroup
-	done chan bool
+	wg     *sync.WaitGroup
+	cancel context.CancelFunc
 
 	repo repo.EventRepo
 }
@@ -40,7 +41,7 @@ func NewKafkaProducer(
 	repo repo.EventRepo,
 ) Producer {
 	wg := &sync.WaitGroup{}
-	done := make(chan bool)
+	//done := make(chan bool)
 
 	return &producer{
 		n:          n,
@@ -48,12 +49,16 @@ func NewKafkaProducer(
 		events:     events,
 		workerPool: workerPool,
 		wg:         wg,
-		done:       done,
-		repo:       repo,
+		//done:       done,
+		repo: repo,
 	}
 }
 
 func (p *producer) Start() {
+	ctxBase := context.Background()
+	ctx, cancel := context.WithCancel(ctxBase)
+	p.cancel = cancel
+
 	for i := uint64(0); i < p.n; i++ {
 		p.wg.Add(1)
 		go func() {
@@ -87,7 +92,7 @@ func (p *producer) Start() {
 								if err != nil {
 									log.Fatal("error occurred during p.repo.Add()")
 								}
-								fmt.Printf("<producer> event.Status = model.Processed && p.repo.Add(): %+v\n", event)
+								//fmt.Printf("<producer> event.Status = model.Processed && p.repo.Add(): %+v\n", event)
 							case model.Updated:
 								fmt.Println("<producer> event.Type = model.Updated")
 							case model.Removed:
@@ -97,7 +102,7 @@ func (p *producer) Start() {
 							}
 						})
 					}
-				case <-p.done:
+				case <-ctx.Done():
 					return
 				}
 			}
@@ -106,6 +111,7 @@ func (p *producer) Start() {
 }
 
 func (p *producer) Close() {
-	close(p.done)
+	//close(p.done)
+	p.cancel()
 	p.wg.Wait()
 }
