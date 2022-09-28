@@ -58,13 +58,13 @@ func NewDbConsumer(
 }
 
 func (c *consumer) Start() {
+	ctxBase := context.Background()
+	ctx, _ := context.WithTimeout(ctxBase, c.timeout)
 	for i := uint64(0); i < c.n; i++ {
 		c.wg.Add(1)
 		go func(j uint64) {
 			defer c.wg.Done()
 			ticker := time.NewTicker(c.timeout)
-			ctxBase := context.Background()
-			ctx, _ := context.WithTimeout(ctxBase, c.timeout)
 
 			for {
 				select {
