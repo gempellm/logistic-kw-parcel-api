@@ -63,11 +63,13 @@ func (p *producer) Start() {
 				case event := <-p.events:
 					err := p.sender.Send(&event)
 					if err != nil {
+						fmt.Printf("<producer> sender caught error while sending %+v: %v\n", event, err)
 						p.workerPool.Submit(func() {
-							fmt.Printf("<producer> sender caught error while sending %+v: %v\n", event, err)
 							err := p.repo.Unlock([]uint64{event.ID})
 							if err != nil {
 								log.Fatal("error occurred during p.repo.Unlock()")
+							} else {
+								fmt.Printf("<producer> repo unlocked ID = %v\n", event.ID)
 							}
 						})
 					} else {

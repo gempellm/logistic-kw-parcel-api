@@ -1,6 +1,8 @@
 package consumer
 
 import (
+	"context"
+	"fmt"
 	"sync"
 	"time"
 
@@ -22,17 +24,17 @@ type consumer struct {
 	batchSize uint64
 	timeout   time.Duration
 
-	done chan bool
-	wg   *sync.WaitGroup
+	//done chan bool
+	wg *sync.WaitGroup
 }
 
-type Config struct {
-	n         uint64
-	events    chan<- model.ParcelEvent
-	repo      repo.EventRepo
-	batchSize uint64
-	timeout   time.Duration
-}
+// type Config struct {
+// 	n         uint64
+// 	events    chan<- model.ParcelEvent
+// 	repo      repo.EventRepo
+// 	batchSize uint64
+// 	timeout   time.Duration
+// }
 
 func NewDbConsumer(
 	n uint64,
@@ -42,7 +44,7 @@ func NewDbConsumer(
 	events chan<- model.ParcelEvent) Consumer {
 
 	wg := &sync.WaitGroup{}
-	done := make(chan bool)
+	//done := make(chan bool)
 
 	return &consumer{
 		n:         n,
@@ -51,39 +53,26 @@ func NewDbConsumer(
 		repo:      repo,
 		events:    events,
 		wg:        wg,
-		done:      done,
+		//done:      done,
 	}
 }
 
 func (c *consumer) Start() {
-	for j := uint64(0); j < c.n; j++ {
+	for i := uint64(0); i < c.n; i++ {
 		c.wg.Add(1)
-		go func(i uint64) {
+		go func(j uint64) {
 			defer c.wg.Done()
 			ticker := time.NewTicker(c.timeout)
+			ctxBase := context.Background()
+			ctx, _ := context.WithTimeout(ctxBase, c.timeout)
 
 			for {
 				select {
 				case <-ticker.C:
 					events, err := c.repo.Lock(c.batchSize)
-					// getEvents := func() ([]model.ParcelEvent, error) {
-					// 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-					// 	events := make([]model.ParcelEvent, 2)
 
-					// 	for i := range events {
-					// 		events[i] = model.ParcelEvent{
-					// 			ID:     uint64(i),
-					// 			Type:   model.Created,
-					// 			Status: model.Deferred,
-					// 			Entity: &model.Parcel{ID: r.Uint64()},
-					// 		}
-					// 	}
-
-					// 	return events, nil
-					// }
-
-					// events, err := getEvents()
 					if err != nil {
+						fmt.Printf("<consumer-%d> error during c.repo.Lock(%v)\n", j, c.batchSize)
 						continue
 					}
 
@@ -91,15 +80,15 @@ func (c *consumer) Start() {
 						c.events <- event
 					}
 
-				case <-c.done:
+				case <-ctx.Done():
 					return
 				}
 			}
-		}(j)
+		}(i)
 	}
 }
 
 func (c *consumer) Close() {
-	close(c.done)
+	//close(c.done)
 	c.wg.Wait()
 }

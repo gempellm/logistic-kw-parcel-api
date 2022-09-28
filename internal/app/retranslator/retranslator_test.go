@@ -2,11 +2,7 @@ package retranslator
 
 import (
 	"errors"
-	"fmt"
 	"math/rand"
-	"os"
-	"strconv"
-	"sync"
 	"testing"
 	"time"
 
@@ -22,37 +18,30 @@ const (
 	NotOk
 )
 
-func generateEvents(amount uint64, mu *sync.Mutex) []model.ParcelEvent {
+func generateEvents(amount uint64) []model.ParcelEvent {
 
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	events := make([]model.ParcelEvent, amount)
-	mu.Lock()
-	var lastID uint64
-	data, _ := os.ReadFile("lastID.txt")
-	lastID, _ = strconv.ParseUint(string(data), 10, 64)
-	os.WriteFile("lastID.txt", []byte(fmt.Sprint(lastID+amount)), 0666)
-	mu.Unlock()
 
 	for i := range events {
 
 		events[i] = model.ParcelEvent{
-			ID:     lastID,
+			ID:     uint64(i),
 			Type:   model.Created,
 			Status: model.Deferred,
 			Entity: &model.Parcel{ID: r.Uint64()},
 		}
-		lastID++
 	}
 
 	return events
 }
 
-func getEvents(cfg Config, testCase TestCase, mu *sync.Mutex) ([]model.ParcelEvent, error) {
+func getEvents(cfg Config, testCase TestCase) ([]model.ParcelEvent, error) {
 	var events []model.ParcelEvent
 
 	switch testCase {
 	case Ok:
-		events = generateEvents(cfg.ConsumeSize, mu)
+		events = generateEvents(cfg.ConsumeSize)
 		return events, nil
 	case NotOk:
 		return nil, errors.New("mock error during Lock")
@@ -67,7 +56,6 @@ func Test_EverythingIsOk(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	repo := mocks.NewMockEventRepo(ctrl)
 	sender := mocks.NewMockEventSender(ctrl)
-	mu := &sync.Mutex{}
 
 	cfg := Config{
 		ChannelSize:    512,
@@ -80,7 +68,7 @@ func Test_EverythingIsOk(t *testing.T) {
 		Sender:         sender,
 	}
 
-	repo.EXPECT().Lock(cfg.ConsumeSize).Return(getEvents(cfg, Ok, mu)).MinTimes(1)
+	repo.EXPECT().Lock(cfg.ConsumeSize).Return(getEvents(cfg, Ok)).MinTimes(1)
 	sender.EXPECT().Send(gomock.Any()).Return(nil).MinTimes(10)
 	repo.EXPECT().Remove(gomock.Any()).Return(nil).MinTimes(10)
 	repo.EXPECT().Add(gomock.Any()).Return(nil).MinTimes(10)
@@ -96,7 +84,6 @@ func Test_SendError(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	repo := mocks.NewMockEventRepo(ctrl)
 	sender := mocks.NewMockEventSender(ctrl)
-	mu := &sync.Mutex{}
 
 	cfg := Config{
 		ChannelSize:    512,
@@ -109,7 +96,7 @@ func Test_SendError(t *testing.T) {
 		Sender:         sender,
 	}
 
-	repo.EXPECT().Lock(cfg.ConsumeSize).Return(getEvents(cfg, Ok, mu)).MinTimes(1)
+	repo.EXPECT().Lock(cfg.ConsumeSize).Return(getEvents(cfg, Ok)).MinTimes(1)
 	sender.EXPECT().Send(gomock.Any()).Return(errors.New("mock error")).MinTimes(1)
 	repo.EXPECT().Remove(gomock.Any()).Return(nil).Times(0)
 	repo.EXPECT().Add(gomock.Any()).Return(nil).Times(0)
@@ -125,7 +112,6 @@ func Test_LockError(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	repo := mocks.NewMockEventRepo(ctrl)
 	sender := mocks.NewMockEventSender(ctrl)
-	mu := &sync.Mutex{}
 
 	cfg := Config{
 		ChannelSize:    512,
@@ -139,7 +125,7 @@ func Test_LockError(t *testing.T) {
 	}
 
 	gomock.InOrder(
-		repo.EXPECT().Lock(cfg.ConsumeSize).Return(getEvents(cfg, NotOk, mu)).MinTimes(1),
+		repo.EXPECT().Lock(cfg.ConsumeSize).Return(getEvents(cfg, NotOk)).MinTimes(1),
 		sender.EXPECT().Send(gomock.Any()).Return(errors.New("mock error")).Times(0),
 		repo.EXPECT().Remove(gomock.Any()).Return(nil).Times(0),
 		repo.EXPECT().Add(gomock.Any()).Return(nil).Times(0),
