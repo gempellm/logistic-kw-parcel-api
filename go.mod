@@ -9,7 +9,6 @@ replace github.com/gempellm/logistic-kw-parcel-api/internal/app/retranslator => 
 require (
 	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
 	github.com/gammazero/workerpool v1.1.3
-	github.com/gempellm/logistic-kw-parcel-api v0.0.0-20220928153703-ffe6a2e42b0b
 	github.com/gempellm/logistic-parcel-api/pkg/logistic_parcel_api v0.0.0-00010101000000-000000000000
 	github.com/golang/mock v1.6.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0

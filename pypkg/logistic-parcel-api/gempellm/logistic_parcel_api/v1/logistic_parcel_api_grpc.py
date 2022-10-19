@@ -21,6 +21,22 @@ class LogisticParcelApiServiceBase(abc.ABC):
     async def DescribeParcelV1(self, stream: 'grpclib.server.Stream[gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelV1Request, gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelV1Response]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def CreateParcel(self, stream: 'grpclib.server.Stream[gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.CreateParcelRequest, gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.CreateParcelResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def DescribeParcel(self, stream: 'grpclib.server.Stream[gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelRequest, gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def ListParcels(self, stream: 'grpclib.server.Stream[gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.ListParcelsRequest, gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.ListParcelsResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def RemoveParcel(self, stream: 'grpclib.server.Stream[gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelRequest, gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelsResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {
             '/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/DescribeParcelV1': grpclib.const.Handler(
@@ -28,6 +44,30 @@ class LogisticParcelApiServiceBase(abc.ABC):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelV1Request,
                 gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelV1Response,
+            ),
+            '/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/CreateParcel': grpclib.const.Handler(
+                self.CreateParcel,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.CreateParcelRequest,
+                gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.CreateParcelResponse,
+            ),
+            '/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/DescribeParcel': grpclib.const.Handler(
+                self.DescribeParcel,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelRequest,
+                gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelResponse,
+            ),
+            '/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/ListParcels': grpclib.const.Handler(
+                self.ListParcels,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.ListParcelsRequest,
+                gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.ListParcelsResponse,
+            ),
+            '/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/RemoveParcel': grpclib.const.Handler(
+                self.RemoveParcel,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelRequest,
+                gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelsResponse,
             ),
         }
 
@@ -40,4 +80,28 @@ class LogisticParcelApiServiceStub:
             '/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/DescribeParcelV1',
             gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelV1Request,
             gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelV1Response,
+        )
+        self.CreateParcel = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/CreateParcel',
+            gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.CreateParcelRequest,
+            gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.CreateParcelResponse,
+        )
+        self.DescribeParcel = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/DescribeParcel',
+            gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelRequest,
+            gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.DescribeParcelResponse,
+        )
+        self.ListParcels = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/ListParcels',
+            gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.ListParcelsRequest,
+            gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.ListParcelsResponse,
+        )
+        self.RemoveParcel = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/RemoveParcel',
+            gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelRequest,
+            gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelsResponse,
         )

@@ -6,7 +6,7 @@ import "validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/gempellm/logistic-parcel-api/pkg/logistic-parcel-api;logistic_parcel_api";
+option go_package = "github.com/gempellm/logistic-parcel-api/pkg/logistic_parcel_api;logistic_parcel_api";
 
 // LogisticParcelApiService - Service for working with parcels
 service LogisticParcelApiService {
@@ -16,6 +16,14 @@ service LogisticParcelApiService {
       get: "/v1/parcels/{parcel_id}"
     };
   }
+
+  rpc CreateParcel(CreateParcelRequest) returns (CreateParcelResponse) {}
+
+  rpc DescribeParcel(DescribeParcelRequest) returns (DescribeParcelResponse) {}
+
+  rpc ListParcels(ListParcelsRequest) returns (ListParcelsResponse) {}
+
+  rpc RemoveParcel(RemoveParcelRequest) returns (RemoveParcelsResponse) {}
 }
 
 message Parcel {
@@ -30,4 +38,37 @@ message DescribeParcelV1Request {
 
 message DescribeParcelV1Response {
   Parcel value = 1;
+}
+
+message CreateParcelRequest {
+  uint64 id = 1;
+}
+
+message CreateParcelResponse {
+  Parcel value = 1;
+
+}
+
+message DescribeParcelRequest {
+  uint64 parcel_id = 1 [(validate.rules).uint64.gt = 0];
+}
+
+message DescribeParcelResponse {
+  Parcel value = 1;
+}
+
+message ListParcelsRequest {
+  repeated uint64 parcel_id = 1;
+}
+
+message ListParcelsResponse {
+  repeated Parcel value = 1;
+}
+
+message RemoveParcelRequest {
+  uint64 parcel_id = 1;
+}
+
+message RemoveParcelsResponse {
+  bool success = 1;
 }

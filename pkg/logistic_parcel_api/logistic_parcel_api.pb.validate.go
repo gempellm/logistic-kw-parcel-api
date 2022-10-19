@@ -261,3 +261,587 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = DescribeParcelV1ResponseValidationError{}
+
+// Validate checks the field values on CreateParcelRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateParcelRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Id
+
+	return nil
+}
+
+// CreateParcelRequestValidationError is the validation error returned by
+// CreateParcelRequest.Validate if the designated constraints aren't met.
+type CreateParcelRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateParcelRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateParcelRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateParcelRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateParcelRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateParcelRequestValidationError) ErrorName() string {
+	return "CreateParcelRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateParcelRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateParcelRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateParcelRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateParcelRequestValidationError{}
+
+// Validate checks the field values on CreateParcelResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateParcelResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetValue()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateParcelResponseValidationError{
+				field:  "Value",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateParcelResponseValidationError is the validation error returned by
+// CreateParcelResponse.Validate if the designated constraints aren't met.
+type CreateParcelResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateParcelResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateParcelResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateParcelResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateParcelResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateParcelResponseValidationError) ErrorName() string {
+	return "CreateParcelResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateParcelResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateParcelResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateParcelResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateParcelResponseValidationError{}
+
+// Validate checks the field values on DescribeParcelRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DescribeParcelRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if m.GetParcelId() <= 0 {
+		return DescribeParcelRequestValidationError{
+			field:  "ParcelId",
+			reason: "value must be greater than 0",
+		}
+	}
+
+	return nil
+}
+
+// DescribeParcelRequestValidationError is the validation error returned by
+// DescribeParcelRequest.Validate if the designated constraints aren't met.
+type DescribeParcelRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DescribeParcelRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DescribeParcelRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DescribeParcelRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DescribeParcelRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DescribeParcelRequestValidationError) ErrorName() string {
+	return "DescribeParcelRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DescribeParcelRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDescribeParcelRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DescribeParcelRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DescribeParcelRequestValidationError{}
+
+// Validate checks the field values on DescribeParcelResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DescribeParcelResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetValue()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return DescribeParcelResponseValidationError{
+				field:  "Value",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// DescribeParcelResponseValidationError is the validation error returned by
+// DescribeParcelResponse.Validate if the designated constraints aren't met.
+type DescribeParcelResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DescribeParcelResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DescribeParcelResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DescribeParcelResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DescribeParcelResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DescribeParcelResponseValidationError) ErrorName() string {
+	return "DescribeParcelResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DescribeParcelResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDescribeParcelResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DescribeParcelResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DescribeParcelResponseValidationError{}
+
+// Validate checks the field values on ListParcelsRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListParcelsRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// ListParcelsRequestValidationError is the validation error returned by
+// ListParcelsRequest.Validate if the designated constraints aren't met.
+type ListParcelsRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListParcelsRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListParcelsRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListParcelsRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListParcelsRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListParcelsRequestValidationError) ErrorName() string {
+	return "ListParcelsRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListParcelsRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListParcelsRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListParcelsRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListParcelsRequestValidationError{}
+
+// Validate checks the field values on ListParcelsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListParcelsResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	for idx, item := range m.GetValue() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ListParcelsResponseValidationError{
+					field:  fmt.Sprintf("Value[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ListParcelsResponseValidationError is the validation error returned by
+// ListParcelsResponse.Validate if the designated constraints aren't met.
+type ListParcelsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListParcelsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListParcelsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListParcelsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListParcelsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListParcelsResponseValidationError) ErrorName() string {
+	return "ListParcelsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListParcelsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListParcelsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListParcelsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListParcelsResponseValidationError{}
+
+// Validate checks the field values on RemoveParcelRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *RemoveParcelRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for ParcelId
+
+	return nil
+}
+
+// RemoveParcelRequestValidationError is the validation error returned by
+// RemoveParcelRequest.Validate if the designated constraints aren't met.
+type RemoveParcelRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e RemoveParcelRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e RemoveParcelRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e RemoveParcelRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e RemoveParcelRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e RemoveParcelRequestValidationError) ErrorName() string {
+	return "RemoveParcelRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e RemoveParcelRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sRemoveParcelRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = RemoveParcelRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = RemoveParcelRequestValidationError{}
+
+// Validate checks the field values on RemoveParcelsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *RemoveParcelsResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Success
+
+	return nil
+}
+
+// RemoveParcelsResponseValidationError is the validation error returned by
+// RemoveParcelsResponse.Validate if the designated constraints aren't met.
+type RemoveParcelsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e RemoveParcelsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e RemoveParcelsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e RemoveParcelsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e RemoveParcelsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e RemoveParcelsResponseValidationError) ErrorName() string {
+	return "RemoveParcelsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e RemoveParcelsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sRemoveParcelsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = RemoveParcelsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = RemoveParcelsResponseValidationError{}

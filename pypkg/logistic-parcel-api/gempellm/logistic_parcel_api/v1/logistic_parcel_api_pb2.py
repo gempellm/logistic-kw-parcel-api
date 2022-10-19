@@ -20,9 +20,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='gempellm/logistic_parcel_api/v1/logistic_parcel_api.proto',
   package='gempellm.logistic_parcel_api.v1',
   syntax='proto3',
-  serialized_options=b'ZSgithub.com/gempellm/logistic-parcel-api/pkg/logistic-parcel-api;logistic_parcel_api',
+  serialized_options=b'ZSgithub.com/gempellm/logistic-parcel-api/pkg/logistic_parcel_api;logistic_parcel_api',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n9gempellm/logistic_parcel_api/v1/logistic_parcel_api.proto\x12\x1fgempellm.logistic_parcel_api.v1\x1a\x17validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"`\n\x06Parcel\x12\x0e\n\x02id\x18\x01 \x01(\x04R\x02id\x12\x10\n\x03\x66oo\x18\x02 \x01(\x04R\x03\x66oo\x12\x34\n\x07\x63reated\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x07\x63reated\"?\n\x17\x44\x65scribeParcelV1Request\x12$\n\tparcel_id\x18\x01 \x01(\x04\x42\x07\xfa\x42\x04\x32\x02 \x00R\x08parcelId\"Y\n\x18\x44\x65scribeParcelV1Response\x12=\n\x05value\x18\x01 \x01(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value2\xc5\x01\n\x18LogisticParcelApiService\x12\xa8\x01\n\x10\x44\x65scribeParcelV1\x12\x38.gempellm.logistic_parcel_api.v1.DescribeParcelV1Request\x1a\x39.gempellm.logistic_parcel_api.v1.DescribeParcelV1Response\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17/v1/parcels/{parcel_id}BUZSgithub.com/gempellm/logistic-parcel-api/pkg/logistic-parcel-api;logistic_parcel_apib\x06proto3'
+  serialized_pb=b'\n9gempellm/logistic_parcel_api/v1/logistic_parcel_api.proto\x12\x1fgempellm.logistic_parcel_api.v1\x1a\x17validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"`\n\x06Parcel\x12\x0e\n\x02id\x18\x01 \x01(\x04R\x02id\x12\x10\n\x03\x66oo\x18\x02 \x01(\x04R\x03\x66oo\x12\x34\n\x07\x63reated\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x07\x63reated\"?\n\x17\x44\x65scribeParcelV1Request\x12$\n\tparcel_id\x18\x01 \x01(\x04\x42\x07\xfa\x42\x04\x32\x02 \x00R\x08parcelId\"Y\n\x18\x44\x65scribeParcelV1Response\x12=\n\x05value\x18\x01 \x01(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\"%\n\x13\x43reateParcelRequest\x12\x0e\n\x02id\x18\x01 \x01(\x04R\x02id\"U\n\x14\x43reateParcelResponse\x12=\n\x05value\x18\x01 \x01(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\"=\n\x15\x44\x65scribeParcelRequest\x12$\n\tparcel_id\x18\x01 \x01(\x04\x42\x07\xfa\x42\x04\x32\x02 \x00R\x08parcelId\"W\n\x16\x44\x65scribeParcelResponse\x12=\n\x05value\x18\x01 \x01(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\"1\n\x12ListParcelsRequest\x12\x1b\n\tparcel_id\x18\x01 \x03(\x04R\x08parcelId\"T\n\x13ListParcelsResponse\x12=\n\x05value\x18\x01 \x03(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\"2\n\x13RemoveParcelRequest\x12\x1b\n\tparcel_id\x18\x01 \x01(\x04R\x08parcelId\"1\n\x15RemoveParcelsResponse\x12\x18\n\x07success\x18\x01 \x01(\x08R\x07success2\xc6\x05\n\x18LogisticParcelApiService\x12\xa8\x01\n\x10\x44\x65scribeParcelV1\x12\x38.gempellm.logistic_parcel_api.v1.DescribeParcelV1Request\x1a\x39.gempellm.logistic_parcel_api.v1.DescribeParcelV1Response\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17/v1/parcels/{parcel_id}\x12}\n\x0c\x43reateParcel\x12\x34.gempellm.logistic_parcel_api.v1.CreateParcelRequest\x1a\x35.gempellm.logistic_parcel_api.v1.CreateParcelResponse\"\x00\x12\x83\x01\n\x0e\x44\x65scribeParcel\x12\x36.gempellm.logistic_parcel_api.v1.DescribeParcelRequest\x1a\x37.gempellm.logistic_parcel_api.v1.DescribeParcelResponse\"\x00\x12z\n\x0bListParcels\x12\x33.gempellm.logistic_parcel_api.v1.ListParcelsRequest\x1a\x34.gempellm.logistic_parcel_api.v1.ListParcelsResponse\"\x00\x12~\n\x0cRemoveParcel\x12\x34.gempellm.logistic_parcel_api.v1.RemoveParcelRequest\x1a\x36.gempellm.logistic_parcel_api.v1.RemoveParcelsResponse\"\x00\x42UZSgithub.com/gempellm/logistic-parcel-api/pkg/logistic_parcel_api;logistic_parcel_apib\x06proto3'
   ,
   dependencies=[validate_dot_validate__pb2.DESCRIPTOR,google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -138,11 +138,278 @@ _DESCRIBEPARCELV1RESPONSE = _descriptor.Descriptor(
   serialized_end=434,
 )
 
+
+_CREATEPARCELREQUEST = _descriptor.Descriptor(
+  name='CreateParcelRequest',
+  full_name='gempellm.logistic_parcel_api.v1.CreateParcelRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='gempellm.logistic_parcel_api.v1.CreateParcelRequest.id', index=0,
+      number=1, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='id', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=436,
+  serialized_end=473,
+)
+
+
+_CREATEPARCELRESPONSE = _descriptor.Descriptor(
+  name='CreateParcelResponse',
+  full_name='gempellm.logistic_parcel_api.v1.CreateParcelResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='gempellm.logistic_parcel_api.v1.CreateParcelResponse.value', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='value', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=475,
+  serialized_end=560,
+)
+
+
+_DESCRIBEPARCELREQUEST = _descriptor.Descriptor(
+  name='DescribeParcelRequest',
+  full_name='gempellm.logistic_parcel_api.v1.DescribeParcelRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='parcel_id', full_name='gempellm.logistic_parcel_api.v1.DescribeParcelRequest.parcel_id', index=0,
+      number=1, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=b'\372B\0042\002 \000', json_name='parcelId', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=562,
+  serialized_end=623,
+)
+
+
+_DESCRIBEPARCELRESPONSE = _descriptor.Descriptor(
+  name='DescribeParcelResponse',
+  full_name='gempellm.logistic_parcel_api.v1.DescribeParcelResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='gempellm.logistic_parcel_api.v1.DescribeParcelResponse.value', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='value', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=625,
+  serialized_end=712,
+)
+
+
+_LISTPARCELSREQUEST = _descriptor.Descriptor(
+  name='ListParcelsRequest',
+  full_name='gempellm.logistic_parcel_api.v1.ListParcelsRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='parcel_id', full_name='gempellm.logistic_parcel_api.v1.ListParcelsRequest.parcel_id', index=0,
+      number=1, type=4, cpp_type=4, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='parcelId', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=714,
+  serialized_end=763,
+)
+
+
+_LISTPARCELSRESPONSE = _descriptor.Descriptor(
+  name='ListParcelsResponse',
+  full_name='gempellm.logistic_parcel_api.v1.ListParcelsResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='gempellm.logistic_parcel_api.v1.ListParcelsResponse.value', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='value', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=765,
+  serialized_end=849,
+)
+
+
+_REMOVEPARCELREQUEST = _descriptor.Descriptor(
+  name='RemoveParcelRequest',
+  full_name='gempellm.logistic_parcel_api.v1.RemoveParcelRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='parcel_id', full_name='gempellm.logistic_parcel_api.v1.RemoveParcelRequest.parcel_id', index=0,
+      number=1, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='parcelId', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=851,
+  serialized_end=901,
+)
+
+
+_REMOVEPARCELSRESPONSE = _descriptor.Descriptor(
+  name='RemoveParcelsResponse',
+  full_name='gempellm.logistic_parcel_api.v1.RemoveParcelsResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='success', full_name='gempellm.logistic_parcel_api.v1.RemoveParcelsResponse.success', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='success', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=903,
+  serialized_end=952,
+)
+
 _PARCEL.fields_by_name['created'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _DESCRIBEPARCELV1RESPONSE.fields_by_name['value'].message_type = _PARCEL
+_CREATEPARCELRESPONSE.fields_by_name['value'].message_type = _PARCEL
+_DESCRIBEPARCELRESPONSE.fields_by_name['value'].message_type = _PARCEL
+_LISTPARCELSRESPONSE.fields_by_name['value'].message_type = _PARCEL
 DESCRIPTOR.message_types_by_name['Parcel'] = _PARCEL
 DESCRIPTOR.message_types_by_name['DescribeParcelV1Request'] = _DESCRIBEPARCELV1REQUEST
 DESCRIPTOR.message_types_by_name['DescribeParcelV1Response'] = _DESCRIBEPARCELV1RESPONSE
+DESCRIPTOR.message_types_by_name['CreateParcelRequest'] = _CREATEPARCELREQUEST
+DESCRIPTOR.message_types_by_name['CreateParcelResponse'] = _CREATEPARCELRESPONSE
+DESCRIPTOR.message_types_by_name['DescribeParcelRequest'] = _DESCRIBEPARCELREQUEST
+DESCRIPTOR.message_types_by_name['DescribeParcelResponse'] = _DESCRIBEPARCELRESPONSE
+DESCRIPTOR.message_types_by_name['ListParcelsRequest'] = _LISTPARCELSREQUEST
+DESCRIPTOR.message_types_by_name['ListParcelsResponse'] = _LISTPARCELSRESPONSE
+DESCRIPTOR.message_types_by_name['RemoveParcelRequest'] = _REMOVEPARCELREQUEST
+DESCRIPTOR.message_types_by_name['RemoveParcelsResponse'] = _REMOVEPARCELSRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Parcel = _reflection.GeneratedProtocolMessageType('Parcel', (_message.Message,), {
@@ -166,9 +433,66 @@ DescribeParcelV1Response = _reflection.GeneratedProtocolMessageType('DescribePar
   })
 _sym_db.RegisterMessage(DescribeParcelV1Response)
 
+CreateParcelRequest = _reflection.GeneratedProtocolMessageType('CreateParcelRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEPARCELREQUEST,
+  '__module__' : 'gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2'
+  # @@protoc_insertion_point(class_scope:gempellm.logistic_parcel_api.v1.CreateParcelRequest)
+  })
+_sym_db.RegisterMessage(CreateParcelRequest)
+
+CreateParcelResponse = _reflection.GeneratedProtocolMessageType('CreateParcelResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEPARCELRESPONSE,
+  '__module__' : 'gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2'
+  # @@protoc_insertion_point(class_scope:gempellm.logistic_parcel_api.v1.CreateParcelResponse)
+  })
+_sym_db.RegisterMessage(CreateParcelResponse)
+
+DescribeParcelRequest = _reflection.GeneratedProtocolMessageType('DescribeParcelRequest', (_message.Message,), {
+  'DESCRIPTOR' : _DESCRIBEPARCELREQUEST,
+  '__module__' : 'gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2'
+  # @@protoc_insertion_point(class_scope:gempellm.logistic_parcel_api.v1.DescribeParcelRequest)
+  })
+_sym_db.RegisterMessage(DescribeParcelRequest)
+
+DescribeParcelResponse = _reflection.GeneratedProtocolMessageType('DescribeParcelResponse', (_message.Message,), {
+  'DESCRIPTOR' : _DESCRIBEPARCELRESPONSE,
+  '__module__' : 'gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2'
+  # @@protoc_insertion_point(class_scope:gempellm.logistic_parcel_api.v1.DescribeParcelResponse)
+  })
+_sym_db.RegisterMessage(DescribeParcelResponse)
+
+ListParcelsRequest = _reflection.GeneratedProtocolMessageType('ListParcelsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _LISTPARCELSREQUEST,
+  '__module__' : 'gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2'
+  # @@protoc_insertion_point(class_scope:gempellm.logistic_parcel_api.v1.ListParcelsRequest)
+  })
+_sym_db.RegisterMessage(ListParcelsRequest)
+
+ListParcelsResponse = _reflection.GeneratedProtocolMessageType('ListParcelsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _LISTPARCELSRESPONSE,
+  '__module__' : 'gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2'
+  # @@protoc_insertion_point(class_scope:gempellm.logistic_parcel_api.v1.ListParcelsResponse)
+  })
+_sym_db.RegisterMessage(ListParcelsResponse)
+
+RemoveParcelRequest = _reflection.GeneratedProtocolMessageType('RemoveParcelRequest', (_message.Message,), {
+  'DESCRIPTOR' : _REMOVEPARCELREQUEST,
+  '__module__' : 'gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2'
+  # @@protoc_insertion_point(class_scope:gempellm.logistic_parcel_api.v1.RemoveParcelRequest)
+  })
+_sym_db.RegisterMessage(RemoveParcelRequest)
+
+RemoveParcelsResponse = _reflection.GeneratedProtocolMessageType('RemoveParcelsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _REMOVEPARCELSRESPONSE,
+  '__module__' : 'gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2'
+  # @@protoc_insertion_point(class_scope:gempellm.logistic_parcel_api.v1.RemoveParcelsResponse)
+  })
+_sym_db.RegisterMessage(RemoveParcelsResponse)
+
 
 DESCRIPTOR._options = None
 _DESCRIBEPARCELV1REQUEST.fields_by_name['parcel_id']._options = None
+_DESCRIBEPARCELREQUEST.fields_by_name['parcel_id']._options = None
 
 _LOGISTICPARCELAPISERVICE = _descriptor.ServiceDescriptor(
   name='LogisticParcelApiService',
@@ -177,8 +501,8 @@ _LOGISTICPARCELAPISERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=437,
-  serialized_end=634,
+  serialized_start=955,
+  serialized_end=1665,
   methods=[
   _descriptor.MethodDescriptor(
     name='DescribeParcelV1',
@@ -188,6 +512,46 @@ _LOGISTICPARCELAPISERVICE = _descriptor.ServiceDescriptor(
     input_type=_DESCRIBEPARCELV1REQUEST,
     output_type=_DESCRIBEPARCELV1RESPONSE,
     serialized_options=b'\202\323\344\223\002\031\022\027/v1/parcels/{parcel_id}',
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='CreateParcel',
+    full_name='gempellm.logistic_parcel_api.v1.LogisticParcelApiService.CreateParcel',
+    index=1,
+    containing_service=None,
+    input_type=_CREATEPARCELREQUEST,
+    output_type=_CREATEPARCELRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='DescribeParcel',
+    full_name='gempellm.logistic_parcel_api.v1.LogisticParcelApiService.DescribeParcel',
+    index=2,
+    containing_service=None,
+    input_type=_DESCRIBEPARCELREQUEST,
+    output_type=_DESCRIBEPARCELRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ListParcels',
+    full_name='gempellm.logistic_parcel_api.v1.LogisticParcelApiService.ListParcels',
+    index=3,
+    containing_service=None,
+    input_type=_LISTPARCELSREQUEST,
+    output_type=_LISTPARCELSRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='RemoveParcel',
+    full_name='gempellm.logistic_parcel_api.v1.LogisticParcelApiService.RemoveParcel',
+    index=4,
+    containing_service=None,
+    input_type=_REMOVEPARCELREQUEST,
+    output_type=_REMOVEPARCELSRESPONSE,
+    serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
 ])

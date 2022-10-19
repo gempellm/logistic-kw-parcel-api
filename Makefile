@@ -7,6 +7,7 @@ export GO111MODULE=on
 
 SERVICE_NAME=logistic-parcel-api
 SERVICE_PATH=gempellm/logistic-parcel-api
+PACKAGE_NAME=logistic_parcel_api
 
 PGV_VERSION:="v0.6.1"
 BUF_VERSION:="v1.8.0"
@@ -58,9 +59,9 @@ generate-go: .generate-go .generate-finalize-go
 	$(BUF_EXE) generate --template buf.gen.python.yaml
 
 .generate-finalize-go:
-	mv pkg/$(SERVICE_NAME)/github.com/$(SERVICE_PATH)/pkg/$(SERVICE_NAME)/* pkg/$(SERVICE_NAME)
-	rm -rf pkg/$(SERVICE_NAME)/github.com/
-	cd pkg/$(SERVICE_NAME) && ls go.mod || (go mod init github.com/$(SERVICE_PATH)/pkg/$(SERVICE_NAME) && go mod tidy)
+	mv pkg/$(SERVICE_NAME)/github.com/$(SERVICE_PATH)/pkg/$(PACKAGE_NAME)/* pkg/$(PACKAGE_NAME)
+	rm -rf pkg/$(SERVICE_NAME)
+	cd pkg/$(PACKAGE_NAME) && ls go.mod || (go mod init github.com/$(SERVICE_PATH)/pkg/$(PACKAGE_NAME) && go mod tidy)
 
 .generate-finalize-python:
 	find pypkg/logistic-parcel-api -type d -exec touch {}/__init__.py \;
@@ -78,6 +79,7 @@ deps-go:
 	go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 	go install github.com/envoyproxy/protoc-gen-validate@v0.6.1
 	go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger@latest
+	export PATH="/home/lev/go/bin:$PATH"
 	
 
 
