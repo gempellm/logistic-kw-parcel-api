@@ -61,25 +61,26 @@ func (p *producer) Start() {
 
 	for i := uint64(0); i < p.n; i++ {
 		p.wg.Add(1)
-		go func() {
+		go func(j uint64) {
+
 			defer p.wg.Done()
 			for {
 				select {
 				case event := <-p.events:
 					err := p.sender.Send(&event)
 					if err != nil {
-						fmt.Printf("<producer> sender caught error while sending %+v: %v\n", event, err)
+						fmt.Printf("<producer-%d> sender caught error while sending %+v: %v\n", j, event, err)
 						p.workerPool.Submit(func() {
 							err := p.repo.Unlock([]uint64{event.ID})
 							if err != nil {
 								log.Fatal("error occurred during p.repo.Unlock()")
 							} else {
-								fmt.Printf("<producer> repo unlocked ID = %v\n", event.ID)
+								fmt.Printf("<producer-%d> repo unlocked ID = %v\n", j, event.ID)
 							}
 						})
 					} else {
 						p.workerPool.Submit(func() {
-							fmt.Printf("<producer> sender successfully sent %+v\n", event)
+							fmt.Printf("<producer-%d> sender successfully sent %+v\n", j, event)
 							err := p.repo.Remove([]uint64{event.ID})
 							if err != nil {
 								log.Fatal("error occurred during p.repo.Remove()")
@@ -94,9 +95,9 @@ func (p *producer) Start() {
 								}
 								//fmt.Printf("<producer> event.Status = model.Processed && p.repo.Add(): %+v\n", event)
 							case model.Updated:
-								fmt.Println("<producer> event.Type = model.Updated")
+								fmt.Printf("<producer-%d> event.Type = model.Updated\n", j)
 							case model.Removed:
-								fmt.Println("<producer event.Type = model.Removed")
+								fmt.Printf("<producer-%d> event.Type = model.Removed\n", j)
 							default:
 								log.Fatal("<producer> unknown event.Type")
 							}
@@ -106,7 +107,7 @@ func (p *producer) Start() {
 					return
 				}
 			}
-		}()
+		}(i)
 	}
 }
 

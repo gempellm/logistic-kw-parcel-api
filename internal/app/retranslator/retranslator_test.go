@@ -134,6 +134,5 @@ func Test_LockError(t *testing.T) {
 
 	retranslator := NewRetranslator(cfg)
 	retranslator.Start()
-	time.Sleep(cfg.ConsumeTimeout * 2)
 	retranslator.Close()
 }
