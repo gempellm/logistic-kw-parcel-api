@@ -1,13 +1,11 @@
 package consumer
 
 import (
-	"context"
-	"fmt"
 	"sync"
 	"time"
 
-	"github.com/gempellm/logistic-kw-parcel-api/internal/app/repo"
-	"github.com/gempellm/logistic-kw-parcel-api/internal/model"
+	"github.com/gempellm/logistic-parcel-api/internal/app/repo"
+	"github.com/gempellm/logistic-parcel-api/internal/model"
 )
 
 type Consumer interface {
@@ -24,17 +22,17 @@ type consumer struct {
 	batchSize uint64
 	timeout   time.Duration
 
-	//done chan bool
-	wg *sync.WaitGroup
+	done chan bool
+	wg   *sync.WaitGroup
 }
 
-// type Config struct {
-// 	n         uint64
-// 	events    chan<- model.ParcelEvent
-// 	repo      repo.EventRepo
-// 	batchSize uint64
-// 	timeout   time.Duration
-// }
+type Config struct {
+	n         uint64
+	events    chan<- model.ParcelEvent
+	repo      repo.EventRepo
+	batchSize uint64
+	timeout   time.Duration
+}
 
 func NewDbConsumer(
 	n uint64,
@@ -44,7 +42,7 @@ func NewDbConsumer(
 	events chan<- model.ParcelEvent) Consumer {
 
 	wg := &sync.WaitGroup{}
-	//done := make(chan bool)
+	done := make(chan bool)
 
 	return &consumer{
 		n:         n,
@@ -53,42 +51,37 @@ func NewDbConsumer(
 		repo:      repo,
 		events:    events,
 		wg:        wg,
-		//done:      done,
+		done:      done,
 	}
 }
 
 func (c *consumer) Start() {
-	ctxBase := context.Background()
-	ctx, _ := context.WithTimeout(ctxBase, c.timeout)
 	for i := uint64(0); i < c.n; i++ {
 		c.wg.Add(1)
-		go func(j uint64) {
+
+		go func() {
 			defer c.wg.Done()
 			ticker := time.NewTicker(c.timeout)
-
 			for {
 				select {
 				case <-ticker.C:
 					events, err := c.repo.Lock(c.batchSize)
-
 					if err != nil {
-						fmt.Printf("<consumer-%d> error during c.repo.Lock(%v)\n", j, c.batchSize)
 						continue
 					}
 
 					for _, event := range events {
 						c.events <- event
 					}
-
-				case <-ctx.Done():
+				case <-c.done:
 					return
 				}
 			}
-		}(i)
+		}()
 	}
 }
 
 func (c *consumer) Close() {
-	//close(c.done)
+	close(c.done)
 	c.wg.Wait()
 }

@@ -1,6 +1,6 @@
 package repo
 
-import "github.com/gempellm/logistic-kw-parcel-api/internal/model"
+import "github.com/gempellm/logistic-parcel-api/internal/model"
 
 type EventRepo interface {
 	Lock(n uint64) ([]model.ParcelEvent, error)

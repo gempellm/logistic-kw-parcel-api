@@ -4,11 +4,11 @@ import (
 	"time"
 
 	"github.com/gammazero/workerpool"
-	"github.com/gempellm/logistic-kw-parcel-api/internal/app/consumer"
-	"github.com/gempellm/logistic-kw-parcel-api/internal/app/producer"
-	"github.com/gempellm/logistic-kw-parcel-api/internal/app/repo"
-	"github.com/gempellm/logistic-kw-parcel-api/internal/app/sender"
-	"github.com/gempellm/logistic-kw-parcel-api/internal/model"
+	"github.com/gempellm/logistic-parcel-api/internal/app/consumer"
+	"github.com/gempellm/logistic-parcel-api/internal/app/producer"
+	"github.com/gempellm/logistic-parcel-api/internal/app/repo"
+	"github.com/gempellm/logistic-parcel-api/internal/app/sender"
+	"github.com/gempellm/logistic-parcel-api/internal/model"
 )
 
 type Retranslator interface {
@@ -54,7 +54,6 @@ func NewRetranslator(cfg Config) Retranslator {
 		cfg.Sender,
 		events,
 		workerPool,
-		cfg.Repo,
 	)
 
 	return &retranslator{

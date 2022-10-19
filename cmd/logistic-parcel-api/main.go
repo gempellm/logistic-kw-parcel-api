@@ -5,7 +5,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/gempellm/logistic-kw-parcel-api/internal/app/retranslator"
+	"github.com/gempellm/logistic-parcel-api/internal/app/retranslator"
 )
 
 func main() {

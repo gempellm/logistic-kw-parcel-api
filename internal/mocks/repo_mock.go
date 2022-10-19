@@ -5,7 +5,7 @@
 package mocks
 
 import (
-	model "github.com/gempellm/logistic-kw-parcel-api/internal/model"
+	model "github.com/gempellm/logistic-parcel-api/internal/model"
 	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
 )

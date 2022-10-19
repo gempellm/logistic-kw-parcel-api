@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package gempellm.logistic_parcel_api.v1;
+
+import "validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/gempellm/logistic-parcel-api/pkg/logistic-parcel-api;logistic_parcel_api";
+
+// LogisticParcelApiService - Service for working with parcels
+service LogisticParcelApiService {
+  // DescribeParcelV1 - Describe a parcel
+  rpc DescribeParcelV1(DescribeParcelV1Request) returns (DescribeParcelV1Response) {
+    option (google.api.http) = {
+      get: "/v1/parcels/{parcel_id}"
+    };
+  }
+}
+
+message Parcel {
+  uint64 id  = 1;
+  uint64 foo = 2;
+  google.protobuf.Timestamp created = 3;
+}
+
+message DescribeParcelV1Request {
+  uint64 parcel_id = 1 [(validate.rules).uint64.gt = 0];
+}
+
+message DescribeParcelV1Response {
+  Parcel value = 1;
+}
