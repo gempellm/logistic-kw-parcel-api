@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'ZSgithub.com/gempellm/logistic-parcel-api/pkg/logistic_parcel_api;logistic_parcel_api',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n9gempellm/logistic_parcel_api/v1/logistic_parcel_api.proto\x12\x1fgempellm.logistic_parcel_api.v1\x1a\x17validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"`\n\x06Parcel\x12\x0e\n\x02id\x18\x01 \x01(\x04R\x02id\x12\x10\n\x03\x66oo\x18\x02 \x01(\x04R\x03\x66oo\x12\x34\n\x07\x63reated\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x07\x63reated\"?\n\x17\x44\x65scribeParcelV1Request\x12$\n\tparcel_id\x18\x01 \x01(\x04\x42\x07\xfa\x42\x04\x32\x02 \x00R\x08parcelId\"Y\n\x18\x44\x65scribeParcelV1Response\x12=\n\x05value\x18\x01 \x01(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\"%\n\x13\x43reateParcelRequest\x12\x0e\n\x02id\x18\x01 \x01(\x04R\x02id\"U\n\x14\x43reateParcelResponse\x12=\n\x05value\x18\x01 \x01(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\"=\n\x15\x44\x65scribeParcelRequest\x12$\n\tparcel_id\x18\x01 \x01(\x04\x42\x07\xfa\x42\x04\x32\x02 \x00R\x08parcelId\"W\n\x16\x44\x65scribeParcelResponse\x12=\n\x05value\x18\x01 \x01(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\"1\n\x12ListParcelsRequest\x12\x1b\n\tparcel_id\x18\x01 \x03(\x04R\x08parcelId\"T\n\x13ListParcelsResponse\x12=\n\x05value\x18\x01 \x03(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\"2\n\x13RemoveParcelRequest\x12\x1b\n\tparcel_id\x18\x01 \x01(\x04R\x08parcelId\"1\n\x15RemoveParcelsResponse\x12\x18\n\x07success\x18\x01 \x01(\x08R\x07success2\xc6\x05\n\x18LogisticParcelApiService\x12\xa8\x01\n\x10\x44\x65scribeParcelV1\x12\x38.gempellm.logistic_parcel_api.v1.DescribeParcelV1Request\x1a\x39.gempellm.logistic_parcel_api.v1.DescribeParcelV1Response\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17/v1/parcels/{parcel_id}\x12}\n\x0c\x43reateParcel\x12\x34.gempellm.logistic_parcel_api.v1.CreateParcelRequest\x1a\x35.gempellm.logistic_parcel_api.v1.CreateParcelResponse\"\x00\x12\x83\x01\n\x0e\x44\x65scribeParcel\x12\x36.gempellm.logistic_parcel_api.v1.DescribeParcelRequest\x1a\x37.gempellm.logistic_parcel_api.v1.DescribeParcelResponse\"\x00\x12z\n\x0bListParcels\x12\x33.gempellm.logistic_parcel_api.v1.ListParcelsRequest\x1a\x34.gempellm.logistic_parcel_api.v1.ListParcelsResponse\"\x00\x12~\n\x0cRemoveParcel\x12\x34.gempellm.logistic_parcel_api.v1.RemoveParcelRequest\x1a\x36.gempellm.logistic_parcel_api.v1.RemoveParcelsResponse\"\x00\x42UZSgithub.com/gempellm/logistic-parcel-api/pkg/logistic_parcel_api;logistic_parcel_apib\x06proto3'
+  serialized_pb=b'\n9gempellm/logistic_parcel_api/v1/logistic_parcel_api.proto\x12\x1fgempellm.logistic_parcel_api.v1\x1a\x17validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"b\n\x06Parcel\x12\x0e\n\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12\x34\n\x07\x63reated\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x07\x63reated\"?\n\x17\x44\x65scribeParcelV1Request\x12$\n\tparcel_id\x18\x01 \x01(\x04\x42\x07\xfa\x42\x04\x32\x02 \x00R\x08parcelId\"Y\n\x18\x44\x65scribeParcelV1Response\x12=\n\x05value\x18\x01 \x01(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\"B\n\x13\x43reateParcelRequest\x12\x17\n\x02id\x18\x01 \x01(\x04\x42\x07\xfa\x42\x04\x32\x02 \x00R\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\"U\n\x14\x43reateParcelResponse\x12=\n\x05value\x18\x01 \x01(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\"=\n\x15\x44\x65scribeParcelRequest\x12$\n\tparcel_id\x18\x01 \x01(\x04\x42\x07\xfa\x42\x04\x32\x02 \x00R\x08parcelId\"W\n\x16\x44\x65scribeParcelResponse\x12=\n\x05value\x18\x01 \x01(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\"C\n\x12ListParcelsRequest\x12-\n\tparcel_id\x18\x01 \x03(\x04\x42\x10\xfa\x42\r\x92\x01\n\x08\x01\x18\x01\"\x04\x32\x02 \x00R\x08parcelId\"T\n\x13ListParcelsResponse\x12=\n\x05value\x18\x01 \x03(\x0b\x32\'.gempellm.logistic_parcel_api.v1.ParcelR\x05value\";\n\x13RemoveParcelRequest\x12$\n\tparcel_id\x18\x01 \x01(\x04\x42\x07\xfa\x42\x04\x32\x02 \x00R\x08parcelId\"1\n\x15RemoveParcelsResponse\x12\x18\n\x07success\x18\x01 \x01(\x08R\x07success2\xc6\x05\n\x18LogisticParcelApiService\x12\xa8\x01\n\x10\x44\x65scribeParcelV1\x12\x38.gempellm.logistic_parcel_api.v1.DescribeParcelV1Request\x1a\x39.gempellm.logistic_parcel_api.v1.DescribeParcelV1Response\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17/v1/parcels/{parcel_id}\x12}\n\x0c\x43reateParcel\x12\x34.gempellm.logistic_parcel_api.v1.CreateParcelRequest\x1a\x35.gempellm.logistic_parcel_api.v1.CreateParcelResponse\"\x00\x12\x83\x01\n\x0e\x44\x65scribeParcel\x12\x36.gempellm.logistic_parcel_api.v1.DescribeParcelRequest\x1a\x37.gempellm.logistic_parcel_api.v1.DescribeParcelResponse\"\x00\x12z\n\x0bListParcels\x12\x33.gempellm.logistic_parcel_api.v1.ListParcelsRequest\x1a\x34.gempellm.logistic_parcel_api.v1.ListParcelsResponse\"\x00\x12~\n\x0cRemoveParcel\x12\x34.gempellm.logistic_parcel_api.v1.RemoveParcelRequest\x1a\x36.gempellm.logistic_parcel_api.v1.RemoveParcelsResponse\"\x00\x42UZSgithub.com/gempellm/logistic-parcel-api/pkg/logistic_parcel_api;logistic_parcel_apib\x06proto3'
   ,
   dependencies=[validate_dot_validate__pb2.DESCRIPTOR,google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -45,12 +45,12 @@ _PARCEL = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, json_name='id', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='foo', full_name='gempellm.logistic_parcel_api.v1.Parcel.foo', index=1,
-      number=2, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
+      name='name', full_name='gempellm.logistic_parcel_api.v1.Parcel.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, json_name='foo', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, json_name='name', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='created', full_name='gempellm.logistic_parcel_api.v1.Parcel.created', index=2,
       number=3, type=11, cpp_type=10, label=1,
@@ -71,7 +71,7 @@ _PARCEL = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=182,
-  serialized_end=278,
+  serialized_end=280,
 )
 
 
@@ -102,8 +102,8 @@ _DESCRIBEPARCELV1REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=280,
-  serialized_end=343,
+  serialized_start=282,
+  serialized_end=345,
 )
 
 
@@ -134,8 +134,8 @@ _DESCRIBEPARCELV1RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=345,
-  serialized_end=434,
+  serialized_start=347,
+  serialized_end=436,
 )
 
 
@@ -153,7 +153,14 @@ _CREATEPARCELREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, json_name='id', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=b'\372B\0042\002 \000', json_name='id', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='gempellm.logistic_parcel_api.v1.CreateParcelRequest.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='name', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -166,8 +173,8 @@ _CREATEPARCELREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=436,
-  serialized_end=473,
+  serialized_start=438,
+  serialized_end=504,
 )
 
 
@@ -198,8 +205,8 @@ _CREATEPARCELRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=475,
-  serialized_end=560,
+  serialized_start=506,
+  serialized_end=591,
 )
 
 
@@ -230,8 +237,8 @@ _DESCRIBEPARCELREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=562,
-  serialized_end=623,
+  serialized_start=593,
+  serialized_end=654,
 )
 
 
@@ -262,8 +269,8 @@ _DESCRIBEPARCELRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=625,
-  serialized_end=712,
+  serialized_start=656,
+  serialized_end=743,
 )
 
 
@@ -281,7 +288,7 @@ _LISTPARCELSREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, json_name='parcelId', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=b'\372B\r\222\001\n\010\001\030\001\"\0042\002 \000', json_name='parcelId', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -294,8 +301,8 @@ _LISTPARCELSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=714,
-  serialized_end=763,
+  serialized_start=745,
+  serialized_end=812,
 )
 
 
@@ -326,8 +333,8 @@ _LISTPARCELSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=765,
-  serialized_end=849,
+  serialized_start=814,
+  serialized_end=898,
 )
 
 
@@ -345,7 +352,7 @@ _REMOVEPARCELREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, json_name='parcelId', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=b'\372B\0042\002 \000', json_name='parcelId', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -358,8 +365,8 @@ _REMOVEPARCELREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=851,
-  serialized_end=901,
+  serialized_start=900,
+  serialized_end=959,
 )
 
 
@@ -390,8 +397,8 @@ _REMOVEPARCELSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=903,
-  serialized_end=952,
+  serialized_start=961,
+  serialized_end=1010,
 )
 
 _PARCEL.fields_by_name['created'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
@@ -492,7 +499,10 @@ _sym_db.RegisterMessage(RemoveParcelsResponse)
 
 DESCRIPTOR._options = None
 _DESCRIBEPARCELV1REQUEST.fields_by_name['parcel_id']._options = None
+_CREATEPARCELREQUEST.fields_by_name['id']._options = None
 _DESCRIBEPARCELREQUEST.fields_by_name['parcel_id']._options = None
+_LISTPARCELSREQUEST.fields_by_name['parcel_id']._options = None
+_REMOVEPARCELREQUEST.fields_by_name['parcel_id']._options = None
 
 _LOGISTICPARCELAPISERVICE = _descriptor.ServiceDescriptor(
   name='LogisticParcelApiService',
@@ -501,8 +511,8 @@ _LOGISTICPARCELAPISERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=955,
-  serialized_end=1665,
+  serialized_start=1013,
+  serialized_end=1723,
   methods=[
   _descriptor.MethodDescriptor(
     name='DescribeParcelV1',

@@ -28,7 +28,7 @@ service LogisticParcelApiService {
 
 message Parcel {
   uint64 id  = 1;
-  uint64 foo = 2;
+  string name = 2;
   google.protobuf.Timestamp created = 3;
 }
 
@@ -41,7 +41,8 @@ message DescribeParcelV1Response {
 }
 
 message CreateParcelRequest {
-  uint64 id = 1;
+  uint64 id = 1 [(validate.rules).uint64.gt = 0];
+  string name = 2;
 }
 
 message CreateParcelResponse {
@@ -58,7 +59,15 @@ message DescribeParcelResponse {
 }
 
 message ListParcelsRequest {
-  repeated uint64 parcel_id = 1;
+  repeated uint64 parcel_id = 1 [(validate.rules).repeated = {
+    unique: true
+    min_items: 1
+    items: {
+      uint64: {
+        gt: 0
+      }
+    }
+  }];
 }
 
 message ListParcelsResponse {
@@ -66,7 +75,7 @@ message ListParcelsResponse {
 }
 
 message RemoveParcelRequest {
-  uint64 parcel_id = 1;
+  uint64 parcel_id = 1 [(validate.rules).uint64.gt = 0];
 }
 
 message RemoveParcelsResponse {

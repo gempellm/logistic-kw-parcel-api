@@ -1,7 +1,8 @@
 package model
 
 type Parcel struct {
-	ID uint64
+	ID   uint64
+	Name string
 }
 
 type EventType uint8

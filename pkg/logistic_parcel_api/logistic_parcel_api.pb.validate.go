@@ -42,7 +42,7 @@ func (m *Parcel) Validate() error {
 
 	// no validation rules for Id
 
-	// no validation rules for Foo
+	// no validation rules for Name
 
 	if v, ok := interface{}(m.GetCreated()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
@@ -270,7 +270,14 @@ func (m *CreateParcelRequest) Validate() error {
 		return nil
 	}
 
-	// no validation rules for Id
+	if m.GetId() <= 0 {
+		return CreateParcelRequestValidationError{
+			field:  "Id",
+			reason: "value must be greater than 0",
+		}
+	}
+
+	// no validation rules for Name
 
 	return nil
 }
@@ -567,6 +574,36 @@ func (m *ListParcelsRequest) Validate() error {
 		return nil
 	}
 
+	if len(m.GetParcelId()) < 1 {
+		return ListParcelsRequestValidationError{
+			field:  "ParcelId",
+			reason: "value must contain at least 1 item(s)",
+		}
+	}
+
+	_ListParcelsRequest_ParcelId_Unique := make(map[uint64]struct{}, len(m.GetParcelId()))
+
+	for idx, item := range m.GetParcelId() {
+		_, _ = idx, item
+
+		if _, exists := _ListParcelsRequest_ParcelId_Unique[item]; exists {
+			return ListParcelsRequestValidationError{
+				field:  fmt.Sprintf("ParcelId[%v]", idx),
+				reason: "repeated value must contain unique items",
+			}
+		} else {
+			_ListParcelsRequest_ParcelId_Unique[item] = struct{}{}
+		}
+
+		if item <= 0 {
+			return ListParcelsRequestValidationError{
+				field:  fmt.Sprintf("ParcelId[%v]", idx),
+				reason: "value must be greater than 0",
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -716,7 +753,12 @@ func (m *RemoveParcelRequest) Validate() error {
 		return nil
 	}
 
-	// no validation rules for ParcelId
+	if m.GetParcelId() <= 0 {
+		return RemoveParcelRequestValidationError{
+			field:  "ParcelId",
+			reason: "value must be greater than 0",
+		}
+	}
 
 	return nil
 }
