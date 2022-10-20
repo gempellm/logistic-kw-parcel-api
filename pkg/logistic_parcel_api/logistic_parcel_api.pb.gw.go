@@ -31,8 +31,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_LogisticParcelApiService_DescribeParcelV1_0(ctx context.Context, marshaler runtime.Marshaler, client LogisticParcelApiServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DescribeParcelV1Request
+func request_LogisticParcelApiService_DescribeParcel_0(ctx context.Context, marshaler runtime.Marshaler, client LogisticParcelApiServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DescribeParcelRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -52,13 +52,13 @@ func request_LogisticParcelApiService_DescribeParcelV1_0(ctx context.Context, ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parcel_id", err)
 	}
 
-	msg, err := client.DescribeParcelV1(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DescribeParcel(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_LogisticParcelApiService_DescribeParcelV1_0(ctx context.Context, marshaler runtime.Marshaler, server LogisticParcelApiServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DescribeParcelV1Request
+func local_request_LogisticParcelApiService_DescribeParcel_0(ctx context.Context, marshaler runtime.Marshaler, server LogisticParcelApiServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DescribeParcelRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -78,7 +78,7 @@ func local_request_LogisticParcelApiService_DescribeParcelV1_0(ctx context.Conte
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "parcel_id", err)
 	}
 
-	msg, err := server.DescribeParcelV1(ctx, &protoReq)
+	msg, err := server.DescribeParcel(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -89,7 +89,7 @@ func local_request_LogisticParcelApiService_DescribeParcelV1_0(ctx context.Conte
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterLogisticParcelApiServiceHandlerFromEndpoint instead.
 func RegisterLogisticParcelApiServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server LogisticParcelApiServiceServer) error {
 
-	mux.Handle("GET", pattern_LogisticParcelApiService_DescribeParcelV1_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_LogisticParcelApiService_DescribeParcel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -97,12 +97,12 @@ func RegisterLogisticParcelApiServiceHandlerServer(ctx context.Context, mux *run
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/DescribeParcelV1", runtime.WithHTTPPathPattern("/v1/parcels/{parcel_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/DescribeParcel", runtime.WithHTTPPathPattern("/v1/parcels/{parcel_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_LogisticParcelApiService_DescribeParcelV1_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_LogisticParcelApiService_DescribeParcel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -110,7 +110,7 @@ func RegisterLogisticParcelApiServiceHandlerServer(ctx context.Context, mux *run
 			return
 		}
 
-		forward_LogisticParcelApiService_DescribeParcelV1_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LogisticParcelApiService_DescribeParcel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -155,25 +155,25 @@ func RegisterLogisticParcelApiServiceHandler(ctx context.Context, mux *runtime.S
 // "LogisticParcelApiServiceClient" to call the correct interceptors.
 func RegisterLogisticParcelApiServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client LogisticParcelApiServiceClient) error {
 
-	mux.Handle("GET", pattern_LogisticParcelApiService_DescribeParcelV1_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_LogisticParcelApiService_DescribeParcel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/DescribeParcelV1", runtime.WithHTTPPathPattern("/v1/parcels/{parcel_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/DescribeParcel", runtime.WithHTTPPathPattern("/v1/parcels/{parcel_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_LogisticParcelApiService_DescribeParcelV1_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LogisticParcelApiService_DescribeParcel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_LogisticParcelApiService_DescribeParcelV1_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LogisticParcelApiService_DescribeParcel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -181,9 +181,9 @@ func RegisterLogisticParcelApiServiceHandlerClient(ctx context.Context, mux *run
 }
 
 var (
-	pattern_LogisticParcelApiService_DescribeParcelV1_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "parcels", "parcel_id"}, ""))
+	pattern_LogisticParcelApiService_DescribeParcel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "parcels", "parcel_id"}, ""))
 )
 
 var (
-	forward_LogisticParcelApiService_DescribeParcelV1_0 = runtime.ForwardResponseMessage
+	forward_LogisticParcelApiService_DescribeParcel_0 = runtime.ForwardResponseMessage
 )

@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"errors"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
@@ -62,6 +63,41 @@ func (o *parcelAPI) DescribeParcelV1(
 	return &pb.DescribeParcelV1Response{
 		Value: &pb.Parcel{
 			Id: parcel.ID,
+		},
+	}, nil
+}
+
+func (o *parcelAPI) DescribeParcel(ctx context.Context, req *pb.DescribeParcelRequest) (*pb.DescribeParcelResponse, error) {
+	if err := req.Validate(); err != nil {
+		log.Error().Err(err).Msg("DescribeParcel - invalid argument")
+
+		return nil, status.Error(codes.InvalidArgument, err.Error())
+	}
+
+	parcel, err := o.repo.DescribeParcel(ctx, req.ParcelId)
+	if err != nil {
+		if errors.Is(err, repo.ErrParcelNotFound) {
+			return nil, status.Error(codes.NotFound, "parcel not found")
+		}
+
+		log.Error().Err(err).Msg("DescribeParcel -- failed")
+
+		return nil, status.Error(codes.Internal, err.Error())
+	}
+
+	if parcel == nil {
+		log.Debug().Uint64("parcelId", req.ParcelId).Msg("parcel not found")
+		totalparcelNotFound.Inc()
+
+		return nil, status.Error(codes.NotFound, "parcel not found")
+	}
+
+	log.Debug().Msg("DescribeParcel - success")
+
+	return &pb.DescribeParcelResponse{
+		Value: &pb.Parcel{
+			Id:   parcel.ID,
+			Name: parcel.Name,
 		},
 	}, nil
 }

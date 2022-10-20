@@ -11,15 +11,15 @@ option go_package = "github.com/gempellm/logistic-parcel-api/pkg/logistic_parcel
 // LogisticParcelApiService - Service for working with parcels
 service LogisticParcelApiService {
   // DescribeParcelV1 - Describe a parcel
-  rpc DescribeParcelV1(DescribeParcelV1Request) returns (DescribeParcelV1Response) {
+  rpc DescribeParcelV1(DescribeParcelV1Request) returns (DescribeParcelV1Response) {}
+
+  rpc CreateParcel(CreateParcelRequest) returns (CreateParcelResponse) {}
+
+  rpc DescribeParcel(DescribeParcelRequest) returns (DescribeParcelResponse) {
     option (google.api.http) = {
       get: "/v1/parcels/{parcel_id}"
     };
   }
-
-  rpc CreateParcel(CreateParcelRequest) returns (CreateParcelResponse) {}
-
-  rpc DescribeParcel(DescribeParcelRequest) returns (DescribeParcelResponse) {}
 
   rpc ListParcels(ListParcelsRequest) returns (ListParcelsResponse) {}
 
