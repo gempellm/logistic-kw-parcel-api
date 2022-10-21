@@ -27,7 +27,7 @@ type LogisticParcelApiServiceClient interface {
 	CreateParcel(ctx context.Context, in *CreateParcelRequest, opts ...grpc.CallOption) (*CreateParcelResponse, error)
 	DescribeParcel(ctx context.Context, in *DescribeParcelRequest, opts ...grpc.CallOption) (*DescribeParcelResponse, error)
 	ListParcels(ctx context.Context, in *ListParcelsRequest, opts ...grpc.CallOption) (*ListParcelsResponse, error)
-	RemoveParcel(ctx context.Context, in *RemoveParcelRequest, opts ...grpc.CallOption) (*RemoveParcelsResponse, error)
+	RemoveParcel(ctx context.Context, in *RemoveParcelRequest, opts ...grpc.CallOption) (*RemoveParcelResponse, error)
 }
 
 type logisticParcelApiServiceClient struct {
@@ -74,8 +74,8 @@ func (c *logisticParcelApiServiceClient) ListParcels(ctx context.Context, in *Li
 	return out, nil
 }
 
-func (c *logisticParcelApiServiceClient) RemoveParcel(ctx context.Context, in *RemoveParcelRequest, opts ...grpc.CallOption) (*RemoveParcelsResponse, error) {
-	out := new(RemoveParcelsResponse)
+func (c *logisticParcelApiServiceClient) RemoveParcel(ctx context.Context, in *RemoveParcelRequest, opts ...grpc.CallOption) (*RemoveParcelResponse, error) {
+	out := new(RemoveParcelResponse)
 	err := c.cc.Invoke(ctx, "/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/RemoveParcel", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -92,7 +92,7 @@ type LogisticParcelApiServiceServer interface {
 	CreateParcel(context.Context, *CreateParcelRequest) (*CreateParcelResponse, error)
 	DescribeParcel(context.Context, *DescribeParcelRequest) (*DescribeParcelResponse, error)
 	ListParcels(context.Context, *ListParcelsRequest) (*ListParcelsResponse, error)
-	RemoveParcel(context.Context, *RemoveParcelRequest) (*RemoveParcelsResponse, error)
+	RemoveParcel(context.Context, *RemoveParcelRequest) (*RemoveParcelResponse, error)
 	mustEmbedUnimplementedLogisticParcelApiServiceServer()
 }
 
@@ -112,7 +112,7 @@ func (UnimplementedLogisticParcelApiServiceServer) DescribeParcel(context.Contex
 func (UnimplementedLogisticParcelApiServiceServer) ListParcels(context.Context, *ListParcelsRequest) (*ListParcelsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListParcels not implemented")
 }
-func (UnimplementedLogisticParcelApiServiceServer) RemoveParcel(context.Context, *RemoveParcelRequest) (*RemoveParcelsResponse, error) {
+func (UnimplementedLogisticParcelApiServiceServer) RemoveParcel(context.Context, *RemoveParcelRequest) (*RemoveParcelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveParcel not implemented")
 }
 func (UnimplementedLogisticParcelApiServiceServer) mustEmbedUnimplementedLogisticParcelApiServiceServer() {

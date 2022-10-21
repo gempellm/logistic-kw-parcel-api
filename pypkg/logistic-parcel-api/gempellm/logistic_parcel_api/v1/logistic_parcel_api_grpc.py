@@ -34,7 +34,7 @@ class LogisticParcelApiServiceBase(abc.ABC):
         pass
 
     @abc.abstractmethod
-    async def RemoveParcel(self, stream: 'grpclib.server.Stream[gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelRequest, gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelsResponse]') -> None:
+    async def RemoveParcel(self, stream: 'grpclib.server.Stream[gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelRequest, gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelResponse]') -> None:
         pass
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
@@ -67,7 +67,7 @@ class LogisticParcelApiServiceBase(abc.ABC):
                 self.RemoveParcel,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelRequest,
-                gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelsResponse,
+                gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelResponse,
             ),
         }
 
@@ -103,5 +103,5 @@ class LogisticParcelApiServiceStub:
             channel,
             '/gempellm.logistic_parcel_api.v1.LogisticParcelApiService/RemoveParcel',
             gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelRequest,
-            gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelsResponse,
+            gempellm.logistic_parcel_api.v1.logistic_parcel_api_pb2.RemoveParcelResponse,
         )

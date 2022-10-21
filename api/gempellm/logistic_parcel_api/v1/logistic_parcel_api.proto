@@ -23,7 +23,7 @@ service LogisticParcelApiService {
 
   rpc ListParcels(ListParcelsRequest) returns (ListParcelsResponse) {}
 
-  rpc RemoveParcel(RemoveParcelRequest) returns (RemoveParcelsResponse) {}
+  rpc RemoveParcel(RemoveParcelRequest) returns (RemoveParcelResponse) {}
 }
 
 message Parcel {
@@ -41,8 +41,7 @@ message DescribeParcelV1Response {
 }
 
 message CreateParcelRequest {
-  uint64 id = 1 [(validate.rules).uint64.gt = 0];
-  string name = 2;
+  string name = 1;
 }
 
 message CreateParcelResponse {
@@ -59,15 +58,8 @@ message DescribeParcelResponse {
 }
 
 message ListParcelsRequest {
-  repeated uint64 parcel_id = 1 [(validate.rules).repeated = {
-    unique: true
-    min_items: 1
-    items: {
-      uint64: {
-        gt: 0
-      }
-    }
-  }];
+  uint64 cursor = 1;
+  uint64 offset = 2 [(validate.rules).uint64.gt = 0]; 
 }
 
 message ListParcelsResponse {
@@ -78,6 +70,6 @@ message RemoveParcelRequest {
   uint64 parcel_id = 1 [(validate.rules).uint64.gt = 0];
 }
 
-message RemoveParcelsResponse {
+message RemoveParcelResponse {
   bool success = 1;
 }

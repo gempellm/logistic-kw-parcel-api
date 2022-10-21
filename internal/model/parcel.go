@@ -1,8 +1,11 @@
 package model
 
+import "google.golang.org/protobuf/types/known/timestamppb"
+
 type Parcel struct {
-	ID   uint64
-	Name string
+	ID      uint64
+	Name    string
+	Created *timestamppb.Timestamp
 }
 
 type EventType uint8

@@ -270,13 +270,6 @@ func (m *CreateParcelRequest) Validate() error {
 		return nil
 	}
 
-	if m.GetId() <= 0 {
-		return CreateParcelRequestValidationError{
-			field:  "Id",
-			reason: "value must be greater than 0",
-		}
-	}
-
 	// no validation rules for Name
 
 	return nil
@@ -574,34 +567,13 @@ func (m *ListParcelsRequest) Validate() error {
 		return nil
 	}
 
-	if len(m.GetParcelId()) < 1 {
+	// no validation rules for Cursor
+
+	if m.GetOffset() <= 0 {
 		return ListParcelsRequestValidationError{
-			field:  "ParcelId",
-			reason: "value must contain at least 1 item(s)",
+			field:  "Offset",
+			reason: "value must be greater than 0",
 		}
-	}
-
-	_ListParcelsRequest_ParcelId_Unique := make(map[uint64]struct{}, len(m.GetParcelId()))
-
-	for idx, item := range m.GetParcelId() {
-		_, _ = idx, item
-
-		if _, exists := _ListParcelsRequest_ParcelId_Unique[item]; exists {
-			return ListParcelsRequestValidationError{
-				field:  fmt.Sprintf("ParcelId[%v]", idx),
-				reason: "repeated value must contain unique items",
-			}
-		} else {
-			_ListParcelsRequest_ParcelId_Unique[item] = struct{}{}
-		}
-
-		if item <= 0 {
-			return ListParcelsRequestValidationError{
-				field:  fmt.Sprintf("ParcelId[%v]", idx),
-				reason: "value must be greater than 0",
-			}
-		}
-
 	}
 
 	return nil
@@ -819,10 +791,10 @@ var _ interface {
 	ErrorName() string
 } = RemoveParcelRequestValidationError{}
 
-// Validate checks the field values on RemoveParcelsResponse with the rules
+// Validate checks the field values on RemoveParcelResponse with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *RemoveParcelsResponse) Validate() error {
+func (m *RemoveParcelResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
@@ -832,9 +804,9 @@ func (m *RemoveParcelsResponse) Validate() error {
 	return nil
 }
 
-// RemoveParcelsResponseValidationError is the validation error returned by
-// RemoveParcelsResponse.Validate if the designated constraints aren't met.
-type RemoveParcelsResponseValidationError struct {
+// RemoveParcelResponseValidationError is the validation error returned by
+// RemoveParcelResponse.Validate if the designated constraints aren't met.
+type RemoveParcelResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -842,24 +814,24 @@ type RemoveParcelsResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e RemoveParcelsResponseValidationError) Field() string { return e.field }
+func (e RemoveParcelResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e RemoveParcelsResponseValidationError) Reason() string { return e.reason }
+func (e RemoveParcelResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e RemoveParcelsResponseValidationError) Cause() error { return e.cause }
+func (e RemoveParcelResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e RemoveParcelsResponseValidationError) Key() bool { return e.key }
+func (e RemoveParcelResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e RemoveParcelsResponseValidationError) ErrorName() string {
-	return "RemoveParcelsResponseValidationError"
+func (e RemoveParcelResponseValidationError) ErrorName() string {
+	return "RemoveParcelResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e RemoveParcelsResponseValidationError) Error() string {
+func (e RemoveParcelResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -871,14 +843,14 @@ func (e RemoveParcelsResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sRemoveParcelsResponse.%s: %s%s",
+		"invalid %sRemoveParcelResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = RemoveParcelsResponseValidationError{}
+var _ error = RemoveParcelResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -886,4 +858,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = RemoveParcelsResponseValidationError{}
+} = RemoveParcelResponseValidationError{}
